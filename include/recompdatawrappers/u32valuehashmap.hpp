@@ -5,6 +5,7 @@
 
 namespace RecompDataWrapper {
 
+// Maps <=32 bit keys to <=32 bit values
 template <class K, class V>
 class ValueHashmap32 {
 
