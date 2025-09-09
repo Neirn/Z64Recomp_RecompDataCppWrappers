@@ -1,6 +1,7 @@
 #ifndef __RECOMPDATAWRAPPERS_U32VALUEHASHMAP_H__
 #define __RECOMPDATAWRAPPERS_U32VALUEHASHMAP_H__
 
+#include <type_traits>
 #include "recompdata.h"
 
 namespace RecompDataWrapper {
@@ -14,8 +15,11 @@ private:
 
 public:
     ValueHashmap32() {
+        static_assert((std::is_arithmetic<K>::value || std::is_pointer<K>::value) && !std::is_floating_point<K>::value, "Key type must be an integer type or pointer!");
+        static_assert((std::is_arithmetic<V>::value || std::is_pointer<V>::value) && !std::is_floating_point<V>::value, "Value type must be an integer type or pointer!");
         static_assert(sizeof(K) <= sizeof(collection_key_t), "Key type cannot fit into collection_key_t!");
         static_assert(sizeof(V) <= sizeof(unsigned long), "Value type cannot fit into unsigned long!");
+
         m_handle = recomputil_create_u32_value_hashmap();
     };
 
