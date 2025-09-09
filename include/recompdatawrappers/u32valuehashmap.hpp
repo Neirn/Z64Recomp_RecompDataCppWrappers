@@ -25,20 +25,20 @@ public:
 
     ~ValueHashmap32() { recomputil_destroy_u32_value_hashmap(m_handle); };
 
-    inline int insert(K key, V val) { return recomputil_u32_value_hashmap_insert(m_handle, (collection_key_t)key, (unsigned long)val); };
+    int insert(K key, V val) { return recomputil_u32_value_hashmap_insert(m_handle, (collection_key_t)key, (unsigned long)val); };
 
-    inline int get(K key, V &out) {
+    int get(K key, V &out) {
         unsigned long realOut = (unsigned long)out;
         int result = recomputil_u32_value_hashmap_get(m_handle, (collection_key_t)key, &realOut);
         out = (V)realOut;
         return result;
     };
 
-    inline int contains(K key) { return recomputil_u32_value_hashmap_contains(m_handle, (collection_key_t)key); };
+    int contains(K key) { return recomputil_u32_value_hashmap_contains(m_handle, (collection_key_t)key); };
 
-    inline int erase(K key) { return recomputil_u32_value_hashmap_erase(m_handle, (collection_key_t)key); };
+    int erase(K key) { return recomputil_u32_value_hashmap_erase(m_handle, (collection_key_t)key); };
 
-    inline unsigned long size() { return recomputil_u32_value_hashmap_size(m_handle); };
+    unsigned long size() { return recomputil_u32_value_hashmap_size(m_handle); };
 };
 
 typedef ValueHashmap32<collection_key_t, unsigned long> U32ValueHashmap;
