@@ -46,7 +46,7 @@ public:
     };
 };
 
-typedef ValueHashmap32<collection_key_t, unsigned long> U32ValueHashmap;
+using U32ValueHashmap = ValueHashmap32<collection_key_t, unsigned long>;
 
 } // namespace RecompDataWrapper
 
