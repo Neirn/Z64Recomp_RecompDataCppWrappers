@@ -39,6 +39,11 @@ public:
     int erase(K key) { return recomputil_u32_value_hashmap_erase(m_handle, (collection_key_t)key); };
 
     unsigned long size() { return recomputil_u32_value_hashmap_size(m_handle); };
+
+    void clear() {
+        recomputil_destroy_u32_value_hashmap(m_handle);
+        m_handle = recomputil_create_u32_value_hashmap();
+    };
 };
 
 typedef ValueHashmap32<collection_key_t, unsigned long> U32ValueHashmap;
