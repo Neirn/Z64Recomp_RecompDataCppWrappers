@@ -46,6 +46,13 @@ public:
         recomputil_destroy_u32_slotmap(m_handle);
         m_handle = recomputil_create_u32_slotmap();
     };
+
+    // Raw handle for the underlying recomp data structure. Must NOT have the destroy function called on it.
+    //
+    // If the clear method is called, all previously returned handles are considered invalid.
+    U32SlotmapHandle handle() {
+        return m_handle;
+    }
 };
 
 using U32Slotmap = Slotmap32<collection_key_t, unsigned long>;

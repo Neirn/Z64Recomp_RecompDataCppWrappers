@@ -38,6 +38,13 @@ public:
         recomputil_destroy_u32_memory_hashmap(m_handle);
         m_handle = recomputil_create_u32_memory_hashmap(sizeof(V));
     }
+
+    // Raw handle for the underlying recomp data structure. Must NOT have the destroy function called on it.
+    //
+    // If the clear method is called, all previously returned handles are considered invalid.
+    U32MemoryHashmapHandle handle() {
+        return m_handle;
+    }
 };
 
 template <class V>

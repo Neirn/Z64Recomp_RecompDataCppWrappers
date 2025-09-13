@@ -35,6 +35,13 @@ public:
         recomputil_destroy_u32_hashset(m_handle);
         m_handle = recomputil_create_u32_hashset();
     };
+
+    // Raw handle for the underlying recomp data structure. Must NOT have the destroy function called on it.
+    //
+    // If the clear method is called, all previously returned handles are considered invalid.
+    U32HashsetHandle handle() {
+        return m_handle;
+    }
 };
 
 using U32Hashset = Hashset32<collection_key_t>;

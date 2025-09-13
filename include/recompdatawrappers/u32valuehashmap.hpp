@@ -44,6 +44,13 @@ public:
         recomputil_destroy_u32_value_hashmap(m_handle);
         m_handle = recomputil_create_u32_value_hashmap();
     };
+
+    // Raw handle for the underlying recomp data structure. Must NOT have the destroy function called on it.
+    //
+    // If the clear method is called, all previously returned handles are considered invalid.
+    U32ValueHashmapHandle handle() {
+        return m_handle;
+    }
 };
 
 using U32ValueHashmap = ValueHashmap32<collection_key_t, unsigned long>;

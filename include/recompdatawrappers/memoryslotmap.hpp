@@ -38,6 +38,13 @@ public:
         recomputil_destroy_memory_slotmap(m_handle);
         m_handle = recomputil_create_memory_slotmap(sizeof(V));
     }
+
+    // Raw handle for the underlying recomp data structure. Must NOT have the destroy function called on it.
+    //
+    // If the clear method is called, all previously returned handles are considered invalid.
+    MemorySlotmapHandle handle() {
+        return m_handle;
+    }
 };
 
 } // namespace RecompDataWrapper
